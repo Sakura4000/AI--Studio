@@ -1,4 +1,4 @@
-# GALA-STUDIO 无损拆分版
+# AI-STUDIO 无损拆分版
 
 该项目从 `gala-studio-replica.html` 机械提取 JavaScript 和 CSS，不重新设计页面，也不改写原有前端业务逻辑。
 
