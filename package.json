@@ -1,0 +1,16 @@
+{
+  "name": "gala-studio-lossless-split",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "split": "node scripts/split-original.mjs",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^8.2.0"
+  }
+}
+
