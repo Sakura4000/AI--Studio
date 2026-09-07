@@ -1,33 +1,58 @@
-# AI-STUDIO 无损拆分版
+# GALA Studio
 
-该项目从 `gala-studio-replica.html` 机械提取 JavaScript 和 CSS，不重新设计页面，也不改写原有前端业务逻辑。
+一个面向 AI 创作流程的前端工作台原型，聚焦“提示词输入、素材上传、任务状态反馈和结果预览”等核心体验。
 
-## 文件结构
+这是我在实习期间参与制作并持续打磨的 AI 产品原型前端版本。项目保留了原型中的主要视觉和交互逻辑，并整理为可运行的 Vite 项目，方便展示、评审和继续开发。
+
+## 面试官 30 秒看懂
+
+- 产品定位：AI 内容创作工作台 / 多模态生成任务界面
+- 我关注的问题：让复杂的 AI 生成流程更容易理解、操作和追踪
+- 核心体验：模式切换、提示词输入、文件上传、参数配置、任务状态反馈、结果查看
+- 项目特点：从原型还原到可运行前端，补齐了状态、工具栏、上传入口和细节交互
+- 当前边界：仓库包含前端展示和交互逻辑，真实的生成能力需要接入对应后端 API
+
+## 核心功能
+
+- 提示词输入与多行编辑
+- 图片、视频等素材上传入口
+- 在线 / 视频等创作模式切换
+- 生成参数与任务状态展示
+- 工具栏、翻译、提及和快捷操作交互
+- 适配不同窗口尺寸的工作台布局
+
+## 技术栈
+
+- Vite
+- 原生 HTML / CSS / JavaScript
+- npm 或 pnpm
+- 模块化的前端资源拆分
+
+## 项目结构
 
 ```text
 ├─ index.html                  # 页面入口
-├─ public/
-│  ├─ app.bundle.js           # 原 HTML 中的完整 module 脚本
-│  └─ styles.css              # 原 HTML 中的完整样式
-├─ scripts/
-│  └─ split-original.mjs      # 可重复执行的拆分脚本
-└─ _scaffold-backup/          # 上一版重设计骨架备份
+├─ public/                     # 页面运行时加载的静态资源
+│  ├─ app.bundle.js
+│  ├─ styles.css
+│  ├─ asset-manager-fixes.css
+│  ├─ ui-enhancements.js
+│  └─ gala-layer-decompose-icon.svg
+├─ scripts/                    # 可重复执行的工程脚本
+│  ├─ split-original.mjs
+│  ├─ patch-loop-node.mjs
+│  └─ serve-single-html.mjs
+├─ design-qa.md                # 设计与交互验收记录
+├─ package.json
+└─ vite.config.js
 ```
 
-## 使用
+## 本地运行
 
 ```bash
 npm install
 npm run dev
 ```
-
-开发服务默认监听所有网卡。同一局域网中的设备可使用终端输出的 `Network` 地址访问，例如：
-
-```text
-http://192.168.x.x:5555/
-```
-
-默认端口为 `5555`。如果该端口已被占用，Vite 会自动选择其他端口，请以终端实际输出为准。Windows 首次询问时，需要允许该程序访问专用网络。
 
 生产构建：
 
@@ -35,20 +60,10 @@ http://192.168.x.x:5555/
 npm run build
 ```
 
-重新从下载目录中的原文件提取：
+## 项目说明
 
-```bash
-npm run split
-```
+页面视觉和主要前端交互来自原型实现，不是重新绘制的静态截图。仓库中的前端请求仍保留了 `/api`、`/ws` 和 `/static` 等接口约定；如果接入后端服务，可以继续扩展为完整的 AI 创作产品。
 
-也可以指定其他输入文件或输出目录：
+## 面试展示建议
 
-```bash
-node scripts/split-original.mjs "D:/path/to/source.html" "D:/path/to/output"
-```
-
-## 说明
-
-- 页面视觉和前端交互来自原 HTML，不是重新绘制的近似版本。
-- `app.bundle.js` 仍是构建压缩后的代码；无损拆分解决文件组织问题，但不会自动恢复原始组件名和源码目录。
-- `/api`、`/ws` 和 `/static` 请求保持原样，相关能力仍需要原项目的后端及静态资源支持。
+建议从“为什么要做这个工作台、用户完成一次生成任务需要经过哪些步骤、你如何处理等待和失败状态”三个角度介绍。比单纯展示页面更能体现产品思考和交互设计能力。
